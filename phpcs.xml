@@ -1,0 +1,27 @@
+<ruleset
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="./vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <!-- Show only relevant part of path -->
+    <arg name="basepath" value="./"/>
+
+    <!-- Configure cache -->
+    <arg name="cache" value="./phpcs.dat"/>
+
+    <!-- Import coding-standard -->
+    <rule ref="./vendor/orisai/coding-standard/src/ruleset-8.1.xml">
+        <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName.NoMatchBetweenTypeNameAndFileName"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
+        <exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator.RequiredNumericLiteralSeparator"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+    </rule>
+
+    <!-- Configure PSR-4 rule -->
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="src"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

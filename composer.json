@@ -1,0 +1,35 @@
+{
+	"name": "graphette/graphette",
+	"description": "Graphette Extension",
+	"autoload": {
+		"psr-4": {
+			"Graphette\\Graphette\\": "src/"
+		}
+	},
+	"scripts": {
+		"check:phpcs": "vendor/bin/phpcs --standard=phpcs.xml src",
+		"check:phpcbf": "vendor/bin/phpcbf --standard=phpcs.xml src"
+	},
+	"require": {
+		"php": "^8.2",
+		"nette/di": "^3.1",
+		"nette/http": "^3.2",
+		"nette/utils": "^4.0.5",
+		"webonyx/graphql-php": "^15.6",
+		"ecodev/graphql-upload": "^7.0",
+		"symfony/validator": "^6.3",
+		"giggsey/libphonenumber-for-php": "^8.13"
+	},
+	"require-dev": {
+		"nette/tester": "^2.5",
+		"orisai/coding-standard": "^3.8"
+	},
+	"suggest": {
+	"contributte/middlewares": "Can be used as Application alternative... than u have to use at least GraphQLMiddleware, see './src/Application/Middleware'"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}
