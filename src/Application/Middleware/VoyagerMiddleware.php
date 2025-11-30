@@ -19,6 +19,7 @@ class VoyagerMiddleware extends RouterMiddleware {
         // Load and echo the contents of a .phtml file
         ob_start();
         $uri = $request->getUri()->getHost();
+        $uri .= '/gql';
         include __DIR__ . '/../template/voyager.phtml';
         $content = ob_get_clean();
 

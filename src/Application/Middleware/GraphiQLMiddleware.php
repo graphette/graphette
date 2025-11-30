@@ -20,6 +20,7 @@ class GraphiQLMiddleware extends RouterMiddleware {
         // Load and echo the contents of a .phtml file
         ob_start();
         $uri = $request->getUri()->getHost();
+        $uri .= '/gql';
         include __DIR__ . '/../template/graphiql.phtml';
         $content = ob_get_clean();
 

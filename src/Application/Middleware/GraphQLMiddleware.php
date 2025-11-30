@@ -32,6 +32,10 @@ class GraphQLMiddleware implements IMiddleware {
         ResponseInterface      $response,
         callable               $next
     ): ResponseInterface {
+        if ($request->getUri()->getPath() !== '/gql') {
+            return $next($request, $response);
+        }
+
         if (empty($request->getParsedBody())) {
             // $request doesn't parse object for some reason, has to be done manually here
             $request = $request->withParsedBody(\json_decode((string) $request->getBody(), true));
@@ -41,7 +45,8 @@ class GraphQLMiddleware implements IMiddleware {
         // todo promise?
         $response = $server->processPsrRequest($request, $response, $response->getBody());
 
-        return $next($request, $response);
+        // no other middleware should be called after GraphQL processing
+        return $response;
     }
 
 

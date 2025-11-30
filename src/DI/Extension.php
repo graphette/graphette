@@ -149,8 +149,8 @@ class Extension extends CompilerExtension {
         $builder->addDefinition($this->prefix('validation.validator'))
             ->setFactory([$validatorBuilder, 'getValidator']);
 
-        $builder->addDefinition($this->prefix('validation.symfonySchemaConstraintProvider'))
-            ->setFactory(SymfonySchemaConstraintsProvider::class);
+//        $builder->addDefinition($this->prefix('validation.symfonySchemaConstraintProvider'))
+//            ->setFactory(SymfonySchemaConstraintsProvider::class);
 
     }
 
