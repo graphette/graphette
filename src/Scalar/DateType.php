@@ -12,7 +12,7 @@ class DateType extends ScalarType {
     }
 
     // eg. 2023-08-24
-    private const DATE_FORMAT = \DateTime::ATOM;
+    private const DATE_FORMAT = 'Y-m-d';
 
     public string $name = 'Date';
 
