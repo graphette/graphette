@@ -7,7 +7,6 @@ namespace Graphette\Graphette\Attribute;
 
 use Attribute;
 
-#[Attribute(Attribute::TARGET_CLASS)]
 abstract class Type {
 
     // todo this is wired, should be on child classes
