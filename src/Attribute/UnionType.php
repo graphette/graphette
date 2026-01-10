@@ -13,7 +13,7 @@ class UnionType extends Type implements ResolvesType {
     private array $types;
 
     public function __construct(
-        string $description = null,
+        ?string $description = null,
         array  $types = [],
     ) {
         parent::__construct($description);

@@ -12,7 +12,7 @@ class InterfaceType extends Type implements ContainsFields, ResolvesType {
 
     private string $attachedTrait;
 
-    public function __construct(string $attachedTrait, string $description = null) {
+    public function __construct(string $attachedTrait, ?string $description = null) {
         parent::__construct($description);
         $this->attachedTrait = $attachedTrait;
     }

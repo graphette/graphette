@@ -13,8 +13,8 @@ class ObjectType extends Type implements ContainsFields {
     private ?string $resolver;
 
     public function __construct(
-        string $description = null,
-        string $resolver = null,
+        ?string $description = null,
+        ?string $resolver = null,
     ) {
         parent::__construct($description);
         $this->resolver = $resolver;

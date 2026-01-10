@@ -20,7 +20,7 @@ abstract class Type {
 
     private ?string $description;
 
-    public function __construct(string $description = null) {
+    public function __construct(?string $description = null) {
         $this->description = $description;
     }
 

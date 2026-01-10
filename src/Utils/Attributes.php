@@ -22,7 +22,7 @@ class Attributes {
     /**
      * @return array<mixed>
      */
-    public static function getAttributeInstances(\ReflectionClass|\ReflectionProperty|\ReflectionParameter $reflection, string $attributeType = null): array {
+    public static function getAttributeInstances(\ReflectionClass|\ReflectionProperty|\ReflectionParameter $reflection, ?string $attributeType = null): array {
         $attributes = $reflection->getAttributes();
 
         $instances = [];
