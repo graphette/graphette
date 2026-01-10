@@ -51,7 +51,7 @@ class URLType extends ScalarType
 	 * @return URL
 	 * @throws Error
 	 */
-	public function parseLiteral(Node $valueNode, array $variables = null): URL
+	public function parseLiteral(Node $valueNode, ?array $variables = null): URL
 	{
 		// Note: throwing GraphQL\Error\Error vs \UnexpectedValueException to benefit from GraphQL
 		// error location in query:

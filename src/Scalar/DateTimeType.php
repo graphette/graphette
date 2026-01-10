@@ -66,7 +66,7 @@ class DateTimeType extends ScalarType {
      *
      * @param \GraphQL\Language\AST\Node $valueNode
      */
-    public function parseLiteral(Node $valueNode, array $variables = null): \DateTimeInterface {
+    public function parseLiteral(Node $valueNode, ?array $variables = null): \DateTimeInterface {
         // Note: throwing GraphQL\Error\Error vs \UnexpectedValueException to benefit from GraphQL
         // error location in query:
         if (!$valueNode instanceof \GraphQL\Language\AST\StringValueNode) {

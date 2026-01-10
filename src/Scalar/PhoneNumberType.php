@@ -51,7 +51,7 @@ class PhoneNumberType extends ScalarType
 	 * @return PhoneNumber
 	 * @throws Error
 	 */
-	public function parseLiteral(Node $valueNode, array $variables = null): PhoneNumber
+	public function parseLiteral(Node $valueNode, ?array $variables = null): PhoneNumber
 	{
 		// Note: throwing GraphQL\Error\Error vs \UnexpectedValueException to benefit from GraphQL
 		// error location in query:
