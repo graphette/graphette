@@ -27,6 +27,10 @@ class DateType extends ScalarType {
             $value = new Date($value);
         }
 
+        if ($value instanceof \DateTimeInterface) {
+            $value = new Date($value);
+        }
+
         if (!$value instanceof Date) {
             throw new \UnexpectedValueException("Cannot represent value as {$this->name}: " . \GraphQL\Utils\Utils::printSafe($value));
         }
@@ -39,7 +43,6 @@ class DateType extends ScalarType {
      */
     public function parseValue($value): Date {
         $dateTime = Date::createFromFormat(self::DATE_FORMAT, $value);
-		b($dateTime);
 
 		return $dateTime;
     }

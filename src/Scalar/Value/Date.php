@@ -45,7 +45,7 @@ class Date {
     {
         return $this->day;
     }
-    
+
     public function getDateTime(): \DateTime
     {
         return \DateTime::createFromFormat('Y-m-d', $this->date);
