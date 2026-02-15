@@ -114,7 +114,8 @@ class Extension extends CompilerExtension {
 
         $builder->addDefinition($this->prefix('type.definitionProvider'))
             ->setFactory(TypeDefinitionProvider::class)
-            ->addSetup('@self::setScalarTypeDefinitions', [$this->getRegisteredScalarDefinitions()]);
+            ->addSetup('@self::setScalarTypeDefinitions', [$this->getRegisteredScalarDefinitions()])
+            ->lazy = false;
 
         $builder->addFactoryDefinition($this->prefix('type.registryBuilderFactory'))
             ->setImplement(TypeRegistryBuilderFactory::class)
