@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints\AtLeastOneOf;
 use Symfony\Component\Validator\Constraints\Compound;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\CssColor;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\EqualTo;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
@@ -31,6 +32,7 @@ class SymphonyConstraintSerializer {
         GreaterThanOrEqual::class => 'gte',
         All::class => 'all',
         Count::class => 'count',
+        Email::class => 'email',
     ];
 
     public static function serialize(Constraint $constraint): array {
@@ -109,6 +111,12 @@ class SymphonyConstraintSerializer {
         return [
             'min' => $count->min,
             'max' => $count->max,
+        ];
+    }
+
+    private static function email(Email $email): array {
+        return [
+            'type' => 'email',
         ];
     }
 
