@@ -43,6 +43,8 @@ class SchemaBuilder {
             $schemaConfig['mutation'] = $typeRegistry->get('Mutation');
         }
 
+        $schemaConfig['directives'] = $typeRegistry->getDirectives();
+
         return new Schema($schemaConfig);
     }
 

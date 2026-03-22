@@ -24,4 +24,7 @@ interface TypeRegistry {
 
     public function resolveObjectType(object $object): ?string;
 
+    /** @return array<\GraphQL\Type\Definition\Directive> */
+    public function getDirectives(): array;
+
 }

@@ -36,6 +36,11 @@ class TypeDefinitionProvider {
      */
     private static array $scalarTypeDefinitions;
 
+    /**
+     * @var array<array{name: string, className: string}>
+     */
+    private static array $directiveDefinitions = [];
+
     private TypeFinder $typeFinder;
 
     private TypeName $typeName;
@@ -96,6 +101,20 @@ class TypeDefinitionProvider {
             }
         }
         return null;
+    }
+
+    /**
+     * @param array<array{name: string, className: string}> $directiveDefinitions
+     */
+    public static function setDirectiveDefinitions(array $directiveDefinitions): void {
+        self::$directiveDefinitions = $directiveDefinitions;
+    }
+
+    /**
+     * @return array<array{name: string, className: string}>
+     */
+    public static function getDirectiveDefinitions(): array {
+        return self::$directiveDefinitions;
     }
 
     /**

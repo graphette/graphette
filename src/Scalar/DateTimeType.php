@@ -30,7 +30,7 @@ class DateTimeType extends ScalarType {
      */
     public function serialize($value): string {
         if(is_string($value)) {
-            $value = new \DateTime($value);
+            return $value;
         }
         if(is_int($value)) {
             $value = (new \DateTime())->setTimestamp($value);

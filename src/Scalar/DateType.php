@@ -24,7 +24,7 @@ class DateType extends ScalarType {
      */
     public function serialize($value): string {
         if(is_string($value)) {
-            $value = new Date($value);
+            return $value;
         }
 
         if ($value instanceof \DateTimeInterface) {

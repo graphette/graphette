@@ -62,6 +62,7 @@ class TypeRegistryBuilder {
 
         $this->processWrappingTypes();
         $this->processScalarTypes();
+        $this->processDirectives();
         $this->processStructuredTypes();
 
         $this->addTypeMap();
@@ -241,6 +242,26 @@ return $object;');
 				return $type;');
 		}
 	}
+
+    private function processDirectives(): void {
+        $directives = TypeDefinitionProvider::getDirectiveDefinitions();
+
+        $bodyParts = [
+            '$directives = array_values(\\' . \GraphQL\Type\Definition\Directive::class . '::builtInDirectives());',
+        ];
+
+        foreach ($directives as $directive) {
+            $className = $directive['className'];
+            $bodyParts[] = '$directives[] = new \\' . $className . '();';
+        }
+
+        $bodyParts[] = 'return $directives;';
+
+        $this->class->addMethod('getDirectives')
+            ->setPublic()
+            ->setReturnType('array')
+            ->setBody(implode("\n", $bodyParts));
+    }
 
     private function processStructuredTypes(): void {
         $typeDefinitions = $this->typeDefinitionProvider->getStructuredTypeDefinitions();

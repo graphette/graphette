@@ -17,6 +17,7 @@ use Nette\Schema\Schema;
 use Nette\Utils\Strings;
 use Symfony\Component\Validator\ContainerConstraintValidatorFactory;
 use Symfony\Component\Validator\Validation;
+use Graphette\Graphette\Directive\DirectiveType;
 use Graphette\Graphette\Application\Application;
 use Graphette\Graphette\Application\ServerConfigProvider;
 use Graphette\Graphette\Error\DefaultErrorFormatter;
@@ -81,6 +82,12 @@ class Extension extends CompilerExtension {
                 )->castTo('array'),
                 Expect::string()
             ),
+			'directives' => Expect::arrayOf(
+				Expect::structure([
+					'className' => Expect::string()->required(),
+				])->castTo('array'),
+				Expect::string()
+			),
 			'resolverMiddlewares' => Expect::arrayOf(Expect::string()),
         ]);
     }
@@ -115,6 +122,7 @@ class Extension extends CompilerExtension {
         $builder->addDefinition($this->prefix('type.definitionProvider'))
             ->setFactory(TypeDefinitionProvider::class)
             ->addSetup('@self::setScalarTypeDefinitions', [$this->getRegisteredScalarDefinitions()])
+            ->addSetup('@self::setDirectiveDefinitions', [$this->getRegisteredDirectiveDefinitions()])
             ->lazy = false;
 
         $builder->addFactoryDefinition($this->prefix('type.registryBuilderFactory'))
@@ -204,6 +212,32 @@ class Extension extends CompilerExtension {
         }
 
         return array_merge($result, self::DEFAULT_SCALAR_TYPES);
+    }
+
+    private function getRegisteredDirectiveDefinitions(): array {
+        $registeredDirectives = $this->config->directives ?? [];
+        $result = [];
+
+        foreach ($registeredDirectives as $directiveName => $registeredDirective) {
+            $className = $registeredDirective['className'];
+
+            if (is_subclass_of($className, DirectiveType::class) === false) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Directive "%s" must be a subclass of "%s".',
+                        $className,
+                        DirectiveType::class
+                    )
+                );
+            }
+
+            $result[$directiveName] = [
+                'name' => $directiveName,
+                'className' => $className,
+            ];
+        }
+
+        return $result;
     }
 
 }
